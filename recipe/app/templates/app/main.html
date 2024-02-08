@@ -1,0 +1,52 @@
+{% extends 'app/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes</title>
+</head>
+<body>
+{% block content %}
+
+
+<div class="row">
+    <h1 style="margin-left: 13px;">Recipes:</h1>
+    <form action="" method="GET" class="mt-2 ml-3">
+        <input type="text" name="search" placeholder="Search for a recipe" value="{{ search_query }}" style="width: 300px;height: 38px;">
+        <button type="submit" class="btn btn-dark mb-1">Search</button>
+    </form>
+</div>
+<br>
+{% for recipe in recipes %}
+    <div class="border rounded-lg p-3 mb-3">
+        <h3 style="display: inline;">{{ recipe.title|capfirst }}</h3>
+        <a href="{% url 'add' recipe.title %}" style="display: inline;float: right;padding: 5px 15px;" class="btn btn-dark ml-3">Add</a>
+        <p style="margin-top: 10px;">Description: <i>{{ recipe.description }}</i></p>
+        <p>Author: <i>{{ recipe.author }}</i></p>
+        <p>{{ recipe.created_on }}</p>
+        <a href="{% url 'recipe_detail' recipe.title %}" class="">View Recipe</a>
+    </div>
+
+{% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+</body>
+</html>

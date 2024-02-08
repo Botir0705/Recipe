@@ -1,0 +1,27 @@
+{% extends 'app/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes</title>
+</head>
+<body>
+{% block content %}
+
+<div class="row">
+    <h1 style="margin-left: 13px;">Selected Recipes:</h1>
+</div>
+<br>
+{% for recipe in recipes %}
+    <div class="border rounded-lg p-3 mb-3">
+        <h3 style="display: inline;">{{ recipe.title|capfirst }}</h3>
+        <a href="{% url 'remove' recipe.title %}" style="display: inline;float: right;" class="btn btn-dark ml-3">Remove</a>
+        <p>Description: {{ recipe.description }}</p>
+        <p>Author: {{ recipe.author }}</p>
+        <p>{{ recipe.created_on }}</p>
+    </div>
+{% endfor %}
+
+{% endblock %}

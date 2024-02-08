@@ -1,0 +1,27 @@
+{% extends 'app/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe</title>
+</head>
+<body>
+    {% block content %}
+        <div class="border rounded-lg p-3 mb-3">
+            <h3 style="display: inline;">{{ recipe.title|capfirst }}</h3>
+            <a href="{% url 'add' recipe.title %}" style="display: inline;float: right;padding: 5px 15px;" class="btn btn-dark ml-3">Add</a>
+            
+            {% if recipe.description %}
+            <p style="margin-top: 10px;">Description: <i>{{ recipe.description }}</i></p>
+            {% endif %}
+            <p style="margin-top: 10px;">Author: <i>{{ recipe.author }}</i></p>
+            <p>{{ recipe.created_on }}</p>
+            <p>Ingredients: <br><i>{{ recipe.ingredients }}</i></p>
+            <p>Content:<br> <i>{{ recipe.content }}</i></p>
+        </div>
+    {% endblock %}
+</body>
+</html>
